@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="LuaUtilityBelt" modversion="3.0.0" corepackage="False" steamworkshopid="2999344925" gameversion="1.9.6.0">
-  <Item file="%ModDir%/dummyitem.xml" />
-</contentpackage>
