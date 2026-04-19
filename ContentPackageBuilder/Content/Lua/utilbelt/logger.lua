@@ -1,9 +1,9 @@
 -- Logger is missing
 if not LuaUserData.IsRegistered("Barotrauma.LuaCsLogger") then
     LuaUserData.RegisterType("Barotrauma.LuaCsLogger")
-    ---@type Barotrauma.LuaCsLogger
-    Logger = LuaUserData.CreateStatic("Barotrauma.LuaCsLogger")
 end
+---@type Barotrauma.LuaCsLogger
+Logger = LuaUserData.CreateStatic("Barotrauma.LuaCsLogger")
 
 local logTypes = {
     ['i'] = { name = "Info", color = Color.LightGreen },

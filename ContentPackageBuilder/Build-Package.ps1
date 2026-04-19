@@ -8,13 +8,14 @@ $osMap = @{
     "osx-x64"   = [BuildOS]::Mac
 }
 
-$platforms = [BuildOS]::Windows
-$targets = [BuildTarget]::Client
-$config = [BuildConfiguration]::Debug
+$platforms = [BuildOS]::All
+$targets = [BuildTarget]::All
+$config = [BuildConfiguration]::Release
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Split-Path -Parent $scriptDir
 $srcDir = Join-Path $scriptDir "Content"
+$binaryDir = Join-Path $srcDir "bin"
 $propsPath = Join-Path $repoRoot "Build.props"
 
 $projects = @(
@@ -73,6 +74,10 @@ Write-Host "Source : $srcDir"
 Write-Host "Target : $destDir`n"
 
 $listArgs = @($srcDir, $destDir, "/E", "/L", "/NP", "/NDL", "/NC", "/NJH", "/NJS")
+$excludeBinary = (Read-Host "Do you want to exclude binary files? (Y/N)") -in @("Y", "y")
+if ($excludeBinary) {
+    $listArgs += @("/XD", $binaryDir)
+}
 $out = robocopy @listArgs 2>&1
 
 $files = $out | Where-Object { $_ -match "^\s{1,}\d+\s" }
@@ -94,6 +99,9 @@ if ($confirmSync -notin @("Y", "y")) {
 
 Write-Host "`nSyncing..." -ForegroundColor Green
 $syncArgs = @($srcDir, $destDir, "/E", "/MIR", "/R:3", "/W:1")
+if ($excludeBinary) {
+    $syncArgs += @("/XD", $binaryDir)
+}
 robocopy @syncArgs | Out-Null
 $exitCode = $LASTEXITCODE
 
