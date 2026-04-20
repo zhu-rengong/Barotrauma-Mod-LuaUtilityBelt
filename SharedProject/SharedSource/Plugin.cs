@@ -10,7 +10,6 @@ public partial class Plugin : IAssemblyPlugin
     public IPluginManagementService PluginManagementService { get; set; }
     public ILoggerService LoggerService { get; set; }
     public IConsoleCommandsService ConsoleCommandsService { get; set; }
-    public ILuaUserDataService LuaUserDataService { get; set; }
 #pragma warning restore CS8618
 
     public ContentPackage _package = null!;
