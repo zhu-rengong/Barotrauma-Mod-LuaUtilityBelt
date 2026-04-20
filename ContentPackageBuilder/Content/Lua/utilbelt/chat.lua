@@ -106,7 +106,7 @@ chat.addcommand { SERVER and "!help" or "!clhelp", callback = function(client, a
     local visiblecommands = moses.filter(commands, function(command)
         return not command.hidden
     end)
-    local helps = moses.mapv(visiblecommands, function(command)
+    local helps = moses.mapi(visiblecommands, function(command)
         return ("‖color:gui.yellow‖%s‖end‖: %s"):format(
             table.concat(command.names, ' | '),
             command.help or "unknown"
@@ -141,7 +141,7 @@ Hook.Add("chatMessage", "utilbelt.chat",
                     utils.ClientLogName(client), name, table.concat(split, ', ')))
                 return command.callback(client, split)
             else
-                local permnames = moses.mapv(checkpermissions(command.permissions), function(v)
+                local permnames = moses.mapi(checkpermissions(command.permissions), function(v)
                     return TextManager.Get("clientpermission." .. v).Value
                 end)
 
