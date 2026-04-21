@@ -10,7 +10,7 @@ $osMap = @{
 
 $platforms = [BuildOS]::All
 $targets = [BuildTarget]::All
-$config = [BuildConfiguration]::Release
+$config = [BuildConfiguration]::Debug
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Split-Path -Parent $scriptDir
