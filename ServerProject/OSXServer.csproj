@@ -1,19 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <Reference Include="DedicatedServer">
-      <HintPath>..\Refs\OSX\DedicatedServer.dll</HintPath>
-    </Reference>
-    <Reference Include="BarotraumaCore">
-      <HintPath>..\Refs\OSX\BarotraumaCore.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework.MacOS.NetStandard">
-      <HintPath>..\Refs\MonoGame.Framework.MacOS.NetStandard.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
   <Import Project="..\SharedProject\SharedProject.projitems" Label="Shared" />
+  <Import Project="../UserBuildData.props" />
   <Import Project="../Build.props" />
 
+  <ItemGroup>
+    <Reference Include="DedicatedServer">
+      <HintPath>$(RefsPath)\OSX\DedicatedServer.dll</HintPath>
+    </Reference>
+    <Reference Include="BarotraumaCore">
+      <HintPath>$(RefsPath)\OSX\BarotraumaCore.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.MacOS.NetStandard">
+      <HintPath>$(RefsPath)\MonoGame.Framework.MacOS.NetStandard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DefineConstants>TRACE;OSX;SERVER</DefineConstants>
   </PropertyGroup>

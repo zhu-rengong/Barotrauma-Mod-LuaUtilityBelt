@@ -10,13 +10,13 @@ $osMap = @{
 
 $platforms = [BuildOS]::All
 $targets = [BuildTarget]::All
-$config = [BuildConfiguration]::Debug
+$config = [BuildConfiguration]::Release
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Split-Path -Parent $scriptDir
 $srcDir = Join-Path $scriptDir "Content"
 $binaryDir = Join-Path $srcDir "bin"
-$propsPath = Join-Path $repoRoot "Build.props"
+$userPropsPath = Join-Path $repoRoot "UserBuildData.props"
 
 $projects = @(
     @{ Path = "ClientProject\WindowsClient.csproj"; Runtime = "win-x64"; Target = [BuildTarget]::Client },
@@ -56,8 +56,8 @@ if ($projects.Count -gt 0) {
     }
 }
 
-if (Test-Path $propsPath) {
-    [xml]$xml = Get-Content $propsPath
+if (Test-Path $userPropsPath) {
+    [xml]$xml = Get-Content $userPropsPath
     $destDir = (Select-Xml -Xml $xml -XPath "//ModDeployDir").Node.InnerText
     if (-not $destDir) {
         Write-Host "Error: ModDeployDir not found in Build.props" -ForegroundColor Red
@@ -65,7 +65,7 @@ if (Test-Path $propsPath) {
     }
 }
 else {
-    Write-Host "Error: Build.props not found at $propsPath" -ForegroundColor Red
+    Write-Host "Error: Build.props not found at $userPropsPath" -ForegroundColor Red
     exit 1
 }
 

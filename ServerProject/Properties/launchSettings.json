@@ -3,9 +3,9 @@
     "WindowsClient": {
       "commandName": "Project"
     },
-    "Launch Barotrauma": {
+    "Launch Barotrauma (DedicatedServer)": {
       "commandName": "Executable",
-      "executablePath": "$(GameExecutableDir)Barotrauma.exe"
+      "executablePath": "$(GameExecutableDir)DedicatedServer.exe"
     }
   }
 }
