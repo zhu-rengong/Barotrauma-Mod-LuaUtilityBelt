@@ -395,13 +395,14 @@ function m:__init(itemBuildsArg, debugName, parentMark)
             end
             initItemBlockToBuilds(); return
         elseif itemBlockArg.identifier then
-            if not ItemPrefab.Prefabs.ContainsKey(itemBlockArg.identifier) then
+            local itemPrefab = ItemPrefab.Find(itemBlockArg.identifier, Identifier(itemBlockArg.identifier))
+            if not itemPrefab then
                 logWithMark(("Not found any item prefab with id '%s'!"):format(itemBlockArg.identifier), 'e')
                 return
             end
             itemBlock.isPrefab = true
-            itemBlock.identifier = Identifier(itemBlockArg.identifier)
-            itemBlock.itemPrefab = ItemPrefab.Prefabs[itemBlock.identifier]
+            itemBlock.identifier = itemPrefab.Identifier.Value
+            itemBlock.itemPrefab = itemPrefab
 
             if itemBlockArg.properties then
                 itemBlock.spedit = spedit(itemBlockArg.properties, logWithMark)
