@@ -1,6 +1,6 @@
 local log = require "utilbelt.logger" ("Think")
 
----@class thinkargs : { [1]: (fun(): integer?) }
+---@class thinkargs : { [1]: (fun(deltaTime: number): integer?) }
 ---@field identifier string
 ---@field interval? integer
 ---@field ingame? boolean
@@ -27,23 +27,23 @@ return function(args)
     local ticks = 0
     local inGame = args.ingame == nil and true or args.ingame
     if inGame then
-        Hook.Add("think", identifier, function()
+        Hook.Add("think", identifier, function(deltaTime)
             if Game.RoundStarted then
                 ticks = ticks + 1
                 if ticks == interval then
                     ticks = 0
-                    interval = func() or interval
+                    interval = func(deltaTime) or interval
                 end
             else
                 Hook.Remove("think", identifier)
             end
         end)
     else
-        Hook.Add("think", identifier, function()
+        Hook.Add("think", identifier, function(deltaTime)
             ticks = ticks + 1
             if ticks == interval then
                 ticks = 0
-                interval = func() or interval
+                interval = func(deltaTime) or interval
             end
         end)
     end
