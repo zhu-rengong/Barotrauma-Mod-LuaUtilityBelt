@@ -1,9 +1,9 @@
 -- Logger is missing
 if not LuaUserData.IsRegistered("Barotrauma.LuaCsLogger") then
-    LuaUserData.RegisterType("Barotrauma.LuaCsLogger")
+    -- LuaUserData.RegisterType("Barotrauma.LuaCsLogger")
 end
 ---@type Barotrauma.LuaCsLogger
-Logger = LuaUserData.CreateStatic("Barotrauma.LuaCsLogger")
+-- Logger = LuaUserData.CreateStatic("Barotrauma.LuaCsLogger")
 
 local logTypes = {
     ['i'] = { name = "Info", color = Color.LightGreen },
@@ -41,7 +41,8 @@ local function logger(name)
                 end
                 Game.Log(msg, ServerLogMessageType.ServerMessage)
             else
-                Logger.Log(msg, logType.color and logType.color or Color.Purple)
+                -- Game.Log(msg, ServerLogMessageType.ServerMessage)
+                -- Logger.Log(msg, logType.color and logType.color or Color.Purple)
             end
         end
     end
