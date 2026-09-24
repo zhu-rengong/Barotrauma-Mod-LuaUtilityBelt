@@ -81,7 +81,7 @@ local function onSpawned(item, itemBlock, context)
         if item.ParentInventory ~= context.inventory then
             local alreadyContained = false
             if context.atItemInventory then
-                if itemBlock.tags and context.inventory:TryPutItem(item, nil) then
+                if itemBlock.tags and context.inventory.TryPutItem(item, nil) then
                     alreadyContained = true
                 end
             end
@@ -96,8 +96,8 @@ local function onSpawned(item, itemBlock, context)
             end
 
             if itemBlock.slotIndex then
-                if not context.inventory:CanBePutInSlot(item, itemBlock.slotIndex, false)
-                    or not context.inventory:TryPutItem(item, itemBlock.slotIndex, true, true, context.character, true, false) then
+                if not context.inventory.CanBePutInSlot(item, itemBlock.slotIndex, false)
+                    or not context.inventory.TryPutItem(item, itemBlock.slotIndex, true, true, context.character, true, false) then
                     logWithMark(("Unable to put item '%s' in slot %i of '%s'!"):format(tostring(item), itemBlock.slotIndex, tostring(context.inventory.Owner)), 'w')
                 end
             end

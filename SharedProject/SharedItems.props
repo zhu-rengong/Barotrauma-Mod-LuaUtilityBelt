@@ -28,8 +28,8 @@
         <PackageReference Include="OneOf" Version="3.0.271" />
         <PackageReference Include="FluentResults" Version="3.16.0" />
 
-        <PackageReference Include="Barotrauma.ReferenceAssemblies.Vanilla.Publicized" GeneratePathProperty="true" Version="*" />
-        <PackageReference Include="Barotrauma.ReferenceAssemblies.Libraries" Version="*" />
+        <PackageReference Include="Barotrauma.ReferenceAssemblies.Vanilla.Publicized" GeneratePathProperty="true" Version="*-*" />
+        <PackageReference Include="Barotrauma.ReferenceAssemblies.Libraries" Version="*-*" />
 
         <Reference Include="LuaCsForBarotraumaPlugin$(BuildTarget)">
             <HintPath>$(RefsPath)\$(PlatformName)\LuaCsForBarotraumaPlugin$(BuildTarget).dll</HintPath>

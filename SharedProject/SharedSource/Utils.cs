@@ -48,7 +48,7 @@ static class Utils
                     item.GetComponent<Holdable>()?.AllowedSlots
                     ?? item.GetComponent<Wearable>()?.AllowedSlots
                     ?? item.GetComponent<Pickable>().AllowedSlots
-                )
+                ).ToList()
                 : item.AllowedSlots.ToList()
         );
         allowedSlots.Remove(InvSlotType.Any);
